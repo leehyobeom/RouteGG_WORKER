@@ -5,7 +5,7 @@ import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 export class Route {
 
     @PrimaryGeneratedColumn()
-    index: number;
+    id: number;
     
     @Column()
     route: string;
@@ -14,14 +14,17 @@ export class Route {
     character: number;   
     
     @Column()
-    seson: number;   
+    season: number;   
     
     @Column()
     routeId : number;
     
     @Column("int", { array: true })
-    enemy_character: number[]; 
+    enemy_character_count: number[]; 
     
     @Column()
     count: number;
+
+    @Column()
+    likeScore: number;
 }
