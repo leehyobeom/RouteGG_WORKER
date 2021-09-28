@@ -89,6 +89,7 @@ export class WorkerService {
                 try {
                     instanceData.gameJson = JSON.parse(body);
                 } catch (error) {
+                    instanceData.too_Many_Request = false;
                     resolve(false);
                 }
                 
@@ -124,7 +125,12 @@ export class WorkerService {
                 },
             }, 
             function (error, response, body) {
-                instanceData.routeJson = JSON.parse(body);
+                try {
+                    instanceData.routeJson = JSON.parse(body);
+                } catch (error) {
+                    instanceData.too_Many_Request = false;
+                    resolve(false);
+                }
 
                 if(instanceData.routeJson?.message === "Too Many Requests"){
                     console.log("Too Many Requests");
